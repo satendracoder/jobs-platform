@@ -1,0 +1,200 @@
+<div class="post-job-page">
+  <div class="page-container">
+    <div class="page-header">
+      <h1>Post a New Job</h1>
+      <p class="page-subtitle">Find the perfect candidate for your open position</p>
+    </div>
+
+    <div class="post-job-content">
+      <form [formGroup]="jobForm" (ngSubmit)="onSubmit()" class="job-form">
+        <!-- Basic Information -->
+        <div class="form-section">
+          <div class="section-header">
+            <h3>Job Information</h3>
+            <p>Provide basic details about the position</p>
+          </div>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label for="title">Job Title *</label>
+              <input
+                type="text"
+                id="title"
+                formControlName="title"
+                class="form-control"
+                [class.error]="jobForm.get('title')?.invalid && jobForm.get('title')?.touched"
+                placeholder="e.g., Senior Software Engineer"
+              />
+              <div class="error-message" *ngIf="jobForm.get('title')?.invalid && jobForm.get('title')?.touched">
+                <span *ngIf="jobForm.get('title')?.errors?.['required']">Job title is required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="location">Location *</label>
+              <input
+                type="text"
+                id="location"
+                formControlName="location"
+                class="form-control"
+                [class.error]="jobForm.get('location')?.invalid && jobForm.get('location')?.touched"
+                placeholder="e.g., San Francisco, CA or Remote"
+              />
+              <div class="error-message" *ngIf="jobForm.get('location')?.invalid && jobForm.get('location')?.touched">
+                <span *ngIf="jobForm.get('location')?.errors?.['required']">Location is required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="jobType">Job Type *</label>
+              <select
+                id="jobType"
+                formControlName="jobType"
+                class="form-control"
+                [class.error]="jobForm.get('jobType')?.invalid && jobForm.get('jobType')?.touched"
+              >
+                <option value="">Select job type</option>
+                <option value="Full-Time">Full-Time</option>
+                <option value="Part-Time">Part-Time</option>
+                <option value="Internship">Internship</option>
+              </select>
+              <div class="error-message" *ngIf="jobForm.get('jobType')?.invalid && jobForm.get('jobType')?.touched">
+                <span *ngIf="jobForm.get('jobType')?.errors?.['required']">Job type is required</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="salaryRange">Salary Range *</label>
+              <input
+                type="text"
+                id="salaryRange"
+                formControlName="salaryRange"
+                class="form-control"
+                [class.error]="jobForm.get('salaryRange')?.invalid && jobForm.get('salaryRange')?.touched"
+                placeholder="e.g., $80,000 - $120,000"
+              />
+              <div class="error-message" *ngIf="jobForm.get('salaryRange')?.invalid && jobForm.get('salaryRange')?.touched">
+                <span *ngIf="jobForm.get('salaryRange')?.errors?.['required']">Salary range is required</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job Description -->
+        <div class="form-section">
+          <div class="section-header">
+            <h3>Job Description</h3>
+            <p>Describe the role, responsibilities, and requirements</p>
+          </div>
+          <div class="form-group">
+            <label for="description">Description *</label>
+            <textarea
+              id="description"
+              formControlName="description"
+              class="form-control"
+              [class.error]="jobForm.get('description')?.invalid && jobForm.get('description')?.touched"
+              rows="8"
+              placeholder="Provide a detailed description of the job role, responsibilities, and what you're looking for in a candidate..."
+            ></textarea>
+            <div class="error-message" *ngIf="jobForm.get('description')?.invalid && jobForm.get('description')?.touched">
+              <span *ngIf="jobForm.get('description')?.errors?.['required']">Job description is required</span>
+              <span *ngIf="jobForm.get('description')?.errors?.['minlength']">Description must be at least 50 characters</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Required Skills -->
+        <div class="form-section">
+          <div class="section-header">
+            <h3>Required Skills</h3>
+            <p>Add skills and technologies required for this position</p>
+          </div>
+          <div class="skills-section">
+            <div class="form-group">
+              <label for="skillInput">Add Skills</label>
+              <div class="skill-input-container">
+                <input
+                  type="text"
+                  id="skillInput"
+                  [(ngModel)]="newSkill"
+                  [ngModelOptions]="{standalone: true}"
+                  class="form-control"
+                  placeholder="Type a skill and press Enter"
+                  (keyup.enter)="addSkill()"
+                />
+                <button type="button" class="add-skill-btn" (click)="addSkill()">Add</button>
+              </div>
+            </div>
+            <div class="skills-list" *ngIf="skills.length > 0">
+              <div class="skill-tag" *ngFor="let skill of skills; let i = index">
+                <span>{{ skill }}</span>
+                <button type="button" class="remove-skill" (click)="removeSkill(i)">×</button>
+              </div>
+            </div>
+            <div class="skills-suggestions">
+              <p>Popular skills:</p>
+              <div class="suggestion-tags">
+                <button
+                  type="button"
+                  class="suggestion-tag"
+                  *ngFor="let suggestion of skillSuggestions"
+                  (click)="addSuggestedSkill(suggestion)"
+                >
+                  {{ suggestion }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <button type="button" class="btn btn-outline" (click)="saveDraft()">
+            Save as Draft
+          </button>
+          <button type="submit" class="btn btn-primary" [disabled]="jobForm.invalid || isLoading">
+            <span *ngIf="!isLoading">Post Job</span>
+            <span *ngIf="isLoading">Posting...</span>
+          </button>
+        </div>
+
+        <div class="success-message" *ngIf="successMessage">
+          {{ successMessage }}
+        </div>
+        <div class="error-message" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+      </form>
+
+      <!-- Preview Section -->
+      <div class="job-preview">
+        <div class="preview-header">
+          <h3>Job Preview</h3>
+          <p>This is how your job posting will appear to candidates</p>
+        </div>
+        <div class="preview-card">
+          <div class="preview-job-header">
+            <h4>{{ jobForm.get('title')?.value || 'Job Title' }}</h4>
+            <span class="preview-job-type" *ngIf="jobForm.get('jobType')?.value">
+              {{ jobForm.get('jobType')?.value }}
+            </span>
+          </div>
+          <div class="preview-company">Your Company Name</div>
+          <div class="preview-details">
+            <div class="preview-detail" *ngIf="jobForm.get('location')?.value">
+              <span class="icon">📍</span>
+              <span>{{ jobForm.get('location')?.value }}</span>
+            </div>
+            <div class="preview-detail" *ngIf="jobForm.get('salaryRange')?.value">
+              <span class="icon">💰</span>
+              <span>{{ jobForm.get('salaryRange')?.value }}</span>
+            </div>
+          </div>
+          <div class="preview-description" *ngIf="jobForm.get('description')?.value">
+            <p>{{ jobForm.get('description')?.value | slice:0:200 }}{{ jobForm.get('description')?.value?.length > 200 ? '...' : '' }}</p>
+          </div>
+          <div class="preview-skills" *ngIf="skills.length > 0">
+            <span class="preview-skill" *ngFor="let skill of skills | slice:0:5">{{ skill }}</span>
+            <span class="skill-more" *ngIf="skills.length > 5">+{{ skills.length - 5 }} more</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

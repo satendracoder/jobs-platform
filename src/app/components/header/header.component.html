@@ -1,0 +1,57 @@
+<header class="header">
+  <div class="header-container">
+    <div class="logo">
+      <a routerLink="/" class="logo-link">
+        <div class="logo-content">
+          <span class="logo-icon">💼</span>
+          <h2>JobPortal</h2>
+        </div>
+      </a>
+    </div>
+    
+    <nav class="nav" [class.nav-open]="isMenuOpen">
+      <ul class="nav-links">
+        <li><a routerLink="/jobs" routerLinkActive="active">Browse Jobs</a></li>
+        <li *ngIf="!currentUser"><a routerLink="/login" routerLinkActive="active">Login</a></li>
+        <li *ngIf="!currentUser"><a routerLink="/register" routerLinkActive="active">Register</a></li>
+        
+        <li *ngIf="currentUser && currentUser.userType === 'JobSeeker'">
+          <a routerLink="/seeker/dashboard" routerLinkActive="active">Dashboard</a>
+        </li>
+        <li *ngIf="currentUser && currentUser.userType === 'JobSeeker'">
+          <a routerLink="/seeker/profile" routerLinkActive="active">Profile</a>
+        </li>
+        <li *ngIf="currentUser && currentUser.userType === 'JobSeeker'">
+          <a routerLink="/seeker/applications" routerLinkActive="active">My Applications</a>
+        </li>
+        
+        <li *ngIf="currentUser && currentUser.userType === 'Employer'">
+          <a routerLink="/employer/dashboard" routerLinkActive="active">Dashboard</a>
+        </li>
+        <li *ngIf="currentUser && currentUser.userType === 'Employer'">
+          <a routerLink="/employer/post-job" routerLinkActive="active">Post Job</a>
+        </li>
+        <li *ngIf="currentUser && currentUser.userType === 'Employer'">
+          <a routerLink="/employer/jobs" routerLinkActive="active">My Jobs</a>
+        </li>
+      </ul>
+      
+      <div class="user-actions" *ngIf="currentUser">
+        <div class="user-profile">
+          <div class="user-avatar">{{ currentUser.fullName.charAt(0) }}</div>
+          <span class="user-name">{{ currentUser.fullName }}</span>
+        </div>
+        <button class="logout-btn" (click)="logout()">
+          <span class="logout-icon">🚪</span>
+          Logout
+        </button>
+      </div>
+    </nav>
+    
+    <button class="menu-toggle" (click)="toggleMenu()" [class.menu-toggle-open]="isMenuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>

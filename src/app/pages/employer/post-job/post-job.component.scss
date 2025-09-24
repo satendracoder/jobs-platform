@@ -1,0 +1,450 @@
+.post-job-page {
+  padding-top: 80px;
+  min-height: 100vh;
+  background: #F8FAFC;
+
+  .page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+      color: #6B7280;
+      font-size: 1.1rem;
+    }
+  }
+
+  .post-job-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .job-form {
+    .form-section {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+
+      .section-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #E5E7EB;
+
+        h3 {
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: #1F2937;
+          margin-bottom: 0.5rem;
+        }
+
+        p {
+          color: #6B7280;
+          font-size: 0.9rem;
+          margin: 0;
+        }
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+
+        .form-group.full-width {
+          grid-column: 1 / -1;
+        }
+      }
+
+      .form-group {
+        label {
+          display: block;
+          font-weight: 500;
+          color: #374151;
+          margin-bottom: 0.5rem;
+          font-size: 0.9rem;
+        }
+
+        .form-control {
+          width: 100%;
+          padding: 0.75rem 1rem;
+          border: 1px solid #D1D5DB;
+          border-radius: 8px;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+          box-sizing: border-box;
+
+          &:focus {
+            outline: none;
+            border-color: #2563EB;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+          }
+
+          &.error {
+            border-color: #EF4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+          }
+
+          &::placeholder {
+            color: #9CA3AF;
+          }
+        }
+
+        textarea.form-control {
+          min-height: 120px;
+          resize: vertical;
+          line-height: 1.6;
+        }
+
+        .error-message {
+          color: #EF4444;
+          font-size: 0.875rem;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+
+    .skills-section {
+      .skill-input-container {
+        display: flex;
+        gap: 0.5rem;
+
+        .form-control {
+          flex: 1;
+        }
+
+        .add-skill-btn {
+          padding: 0.75rem 1.5rem;
+          background: #2563EB;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+
+          &:hover {
+            background: #1D4ED8;
+          }
+        }
+      }
+
+      .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin: 1.5rem 0;
+
+        .skill-tag {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          background: #EBF5FF;
+          color: #1E40AF;
+          padding: 0.5rem 1rem;
+          border-radius: 20px;
+          font-size: 0.875rem;
+          font-weight: 500;
+          border: 1px solid #DBEAFE;
+
+          .remove-skill {
+            background: none;
+            border: none;
+            color: #1E40AF;
+            cursor: pointer;
+            font-size: 1.2rem;
+            line-height: 1;
+            padding: 0;
+            margin-left: 0.25rem;
+
+            &:hover {
+              color: #DC2626;
+            }
+          }
+        }
+      }
+
+      .skills-suggestions {
+        p {
+          font-size: 0.9rem;
+          color: #6B7280;
+          margin-bottom: 0.75rem;
+        }
+
+        .suggestion-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+
+          .suggestion-tag {
+            background: #F3F4F6;
+            color: #374151;
+            border: 1px solid #D1D5DB;
+            padding: 0.375rem 0.75rem;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+              background: #2563EB;
+              color: white;
+              border-color: #2563EB;
+            }
+          }
+        }
+      }
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+      padding: 2rem 0;
+
+      .btn {
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        font-size: 1rem;
+
+        &.btn-primary {
+          background: #2563EB;
+          color: white;
+
+          &:hover:not(:disabled) {
+            background: #1D4ED8;
+            transform: translateY(-1px);
+          }
+
+          &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+        }
+
+        &.btn-outline {
+          background: transparent;
+          color: #6B7280;
+          border: 1px solid #D1D5DB;
+
+          &:hover {
+            background: #F9FAFB;
+            border-color: #9CA3AF;
+          }
+        }
+      }
+    }
+
+    .success-message {
+      background: #DCFCE7;
+      color: #059669;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .error-message {
+      background: #FEE2E2;
+      color: #DC2626;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: 500;
+    }
+  }
+
+  .job-preview {
+    position: sticky;
+    top: 100px;
+
+    .preview-header {
+      margin-bottom: 1.5rem;
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1F2937;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: #6B7280;
+        font-size: 0.9rem;
+        margin: 0;
+      }
+    }
+
+    .preview-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: 1px solid #E5E7EB;
+
+      .preview-job-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        gap: 1rem;
+
+        h4 {
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: #1F2937;
+          margin: 0;
+          line-height: 1.3;
+        }
+
+        .preview-job-type {
+          padding: 0.25rem 0.75rem;
+          border-radius: 20px;
+          font-size: 0.75rem;
+          font-weight: 500;
+          white-space: nowrap;
+          flex-shrink: 0;
+          background: #DCFCE7;
+          color: #059669;
+        }
+      }
+
+      .preview-company {
+        color: #2563EB;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      .preview-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+
+        .preview-detail {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.875rem;
+          color: #6B7280;
+
+          .icon {
+            font-size: 1rem;
+            width: 18px;
+          }
+        }
+      }
+
+      .preview-description {
+        margin-bottom: 1rem;
+
+        p {
+          color: #6B7280;
+          line-height: 1.6;
+          margin: 0;
+        }
+      }
+
+      .preview-skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+
+        .preview-skill {
+          background: #F3F4F6;
+          color: #374151;
+          padding: 0.25rem 0.75rem;
+          border-radius: 16px;
+          font-size: 0.75rem;
+          font-weight: 500;
+        }
+
+        .skill-more {
+          color: #6B7280;
+          font-size: 0.75rem;
+          align-self: center;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .post-job-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .job-preview {
+      position: static;
+      order: -1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-container {
+      padding: 1rem 0.5rem;
+    }
+
+    .page-header {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    .job-form {
+      .form-section {
+        padding: 1.5rem;
+
+        .form-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+      }
+
+      .form-actions {
+        flex-direction: column;
+
+        .btn {
+          width: 100%;
+        }
+      }
+    }
+
+    .skills-section {
+      .skill-input-container {
+        flex-direction: column;
+
+        .add-skill-btn {
+          width: 100%;
+        }
+      }
+    }
+
+    .job-preview {
+      .preview-card {
+        padding: 1.5rem;
+      }
+    }
+  }
+}

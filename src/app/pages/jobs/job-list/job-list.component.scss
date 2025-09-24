@@ -1,0 +1,202 @@
+.job-list-page {
+  padding-top: 70px;
+  min-height: 100vh;
+  background: #F8FAFC;
+
+  .page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .search-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1F2937;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .search-form {
+      .search-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr auto;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+
+        .form-group {
+          .search-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+
+            &:focus {
+              outline: none;
+              border-color: #2563EB;
+              box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            }
+
+            &::placeholder {
+              color: #9CA3AF;
+            }
+          }
+        }
+
+        .btn {
+          padding: 0.875rem 1.5rem;
+          border-radius: 8px;
+          font-weight: 500;
+          cursor: pointer;
+          border: none;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+
+          &.btn-primary {
+            background: #2563EB;
+            color: white;
+
+            &:hover {
+              background: #1D4ED8;
+              transform: translateY(-1px);
+            }
+          }
+        }
+      }
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: end;
+
+      .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        label {
+          font-weight: 500;
+          color: #374151;
+          font-size: 0.875rem;
+        }
+
+        .filter-select,
+        .filter-input {
+          padding: 0.5rem 0.75rem;
+          border: 1px solid #D1D5DB;
+          border-radius: 6px;
+          font-size: 0.875rem;
+          min-width: 150px;
+
+          &:focus {
+            outline: none;
+            border-color: #2563EB;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+          }
+        }
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: #6B7280;
+        border: 1px solid #D1D5DB;
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+
+        &:hover {
+          background: #F3F4F6;
+          border-color: #9CA3AF;
+        }
+      }
+    }
+  }
+
+  .results-section {
+    .results-header {
+      margin-bottom: 1.5rem;
+
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1F2937;
+      }
+    }
+
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 4rem 0;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #6B7280;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        color: #9CA3AF;
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-container {
+      padding: 1rem 0.5rem;
+    }
+
+    .search-section {
+      padding: 1.5rem;
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .search-form {
+        .search-row {
+          grid-template-columns: 1fr;
+          gap: 0.75rem;
+        }
+      }
+
+      .filters {
+        flex-direction: column;
+        align-items: stretch;
+
+        .filter-group {
+          .filter-select,
+          .filter-input {
+            min-width: unset;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .jobs-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1rem;
+    }
+  }
+}

@@ -1,0 +1,151 @@
+<div class="employer-jobs-page">
+  <div class="page-container">
+    <div class="page-header">
+      <div class="header-content">
+        <h1>My Job Postings</h1>
+        <p class="page-subtitle">Manage your job listings and track applications</p>
+      </div>
+      <div class="header-actions">
+        <a routerLink="/employer/post-job" class="btn btn-primary">
+          <span class="btn-icon">➕</span>
+          Post New Job
+        </a>
+      </div>
+    </div>
+
+    <div class="jobs-stats">
+      <div class="stat-card">
+        <div class="stat-icon">💼</div>
+        <div class="stat-content">
+          <h3>{{ jobs.length }}</h3>
+          <p>Active Jobs</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-content">
+          <h3>{{ totalApplications }}</h3>
+          <p>Total Applications</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📊</div>
+        <div class="stat-content">
+          <h3>{{ averageApplications }}</h3>
+          <p>Avg per Job</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📈</div>
+        <div class="stat-content">
+          <h3>{{ recentJobs }}</h3>
+          <p>This Month</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="jobs-filters">
+      <div class="filter-group">
+        <label>Filter by Status:</label>
+        <select [(ngModel)]="selectedStatus" (change)="filterJobs()" class="filter-select">
+          <option value="">All Jobs</option>
+          <option value="active">Active</option>
+          <option value="draft">Draft</option>
+          <option value="closed">Closed</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Sort by:</label>
+        <select [(ngModel)]="sortBy" (change)="sortJobs()" class="filter-select">
+          <option value="date-desc">Newest First</option>
+          <option value="date-asc">Oldest First</option>
+          <option value="applications">Most Applications</option>
+          <option value="title">Job Title</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="jobs-content" *ngIf="filteredJobs.length > 0">
+      <div class="jobs-list">
+        <div class="job-card" *ngFor="let job of filteredJobs">
+          <div class="job-header">
+            <div class="job-info">
+              <h3 class="job-title">{{ job.title }}</h3>
+              <div class="job-meta">
+                <span class="job-location">{{ job.location }}</span>
+                <span class="separator">•</span>
+                <span class="job-type">{{ job.jobType }}</span>
+                <span class="separator">•</span>
+                <span class="job-salary">{{ job.salaryRange }}</span>
+              </div>
+              <div class="job-posted">
+                Posted {{ job.postedDate | date:'MMM dd, yyyy' }}
+              </div>
+            </div>
+            <div class="job-status">
+              <span class="status-badge status-active">Active</span>
+            </div>
+          </div>
+
+          <div class="job-body">
+            <p class="job-description">{{ job.description | slice:0:150 }}{{ job.description.length > 150 ? '...' : '' }}</p>
+            <div class="job-skills" *ngIf="job.skills && job.skills.length > 0">
+              <span class="skill-tag" *ngFor="let skill of job.skills | slice:0:4">{{ skill }}</span>
+              <span class="skill-more" *ngIf="job.skills.length > 4">+{{ job.skills.length - 4 }} more</span>
+            </div>
+          </div>
+
+          <div class="job-stats">
+            <div class="stat-item">
+              <span class="stat-number">{{ getApplicationCount(job.jobID!) }}</span>
+              <span class="stat-label">Applications</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{{ getViewCount(job.jobID!) }}</span>
+              <span class="stat-label">Views</span>
+            </div>
+          </div>
+
+          <div class="job-actions">
+            <button class="btn btn-outline btn-sm" [routerLink]="['/jobs', job.jobID]">
+              View
+            </button>
+            <button class="btn btn-secondary btn-sm" (click)="editJob(job.jobID!)">
+              Edit
+            </button>
+            <button class="btn btn-outline btn-sm" (click)="viewApplications(job.jobID!)">
+              Applications ({{ getApplicationCount(job.jobID!) }})
+            </button>
+            <div class="dropdown">
+              <button class="btn btn-outline btn-sm dropdown-toggle" (click)="toggleDropdown(job.jobID!)">
+                More
+              </button>
+              <div class="dropdown-menu" [class.show]="activeDropdown === job.jobID">
+                <button class="dropdown-item" (click)="duplicateJob(job.jobID!)">Duplicate</button>
+                <button class="dropdown-item" (click)="closeJob(job.jobID!)">Close Job</button>
+                <button class="dropdown-item danger" (click)="deleteJob(job.jobID!)">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-jobs" *ngIf="filteredJobs.length === 0 && jobs.length > 0">
+      <div class="no-results-icon">🔍</div>
+      <h3>No jobs found</h3>
+      <p>Try adjusting your filters to see more results.</p>
+      <button class="btn btn-outline" (click)="clearFilters()">Clear Filters</button>
+    </div>
+
+    <div class="empty-state" *ngIf="jobs.length === 0">
+      <div class="empty-icon">💼</div>
+      <h3>No Job Postings Yet</h3>
+      <p>Start attracting top talent by posting your first job opening. It only takes a few minutes to get started.</p>
+      <a routerLink="/employer/post-job" class="btn btn-primary">
+        <span class="btn-icon">➕</span>
+        Post Your First Job
+      </a>
+    </div>
+  </div>
+</div>

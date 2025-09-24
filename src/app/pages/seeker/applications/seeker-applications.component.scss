@@ -1,0 +1,413 @@
+.applications-page {
+  padding-top: 80px;
+  min-height: 100vh;
+  background: #F8FAFC;
+
+  .page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+      color: #6B7280;
+      font-size: 1.1rem;
+    }
+  }
+
+  .applications-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+
+    .stat-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .stat-icon {
+        font-size: 2.5rem;
+        background: #F3F4F6;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .stat-content {
+        h3 {
+          font-size: 2rem;
+          font-weight: 700;
+          color: #2563EB;
+          margin: 0 0 0.25rem 0;
+        }
+
+        p {
+          color: #6B7280;
+          margin: 0;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .applications-filters {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: end;
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      label {
+        font-weight: 500;
+        color: #374151;
+        font-size: 0.875rem;
+      }
+
+      .filter-select {
+        padding: 0.75rem;
+        border: 1px solid #D1D5DB;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        min-width: 180px;
+        background: white;
+
+        &:focus {
+          outline: none;
+          border-color: #2563EB;
+          box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+      }
+    }
+  }
+
+  .applications-content {
+    .applications-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .application-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .application-header {
+          padding: 2rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 2rem;
+          border-bottom: 1px solid #F3F4F6;
+
+          .job-info {
+            flex: 1;
+
+            .job-title {
+              font-size: 1.5rem;
+              font-weight: 600;
+              color: #1F2937;
+              margin-bottom: 0.5rem;
+            }
+
+            .company-name {
+              font-size: 1.1rem;
+              color: #2563EB;
+              font-weight: 500;
+              margin-bottom: 0.75rem;
+            }
+
+            .job-details {
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              color: #6B7280;
+              font-size: 0.9rem;
+
+              .separator {
+                color: #D1D5DB;
+              }
+            }
+          }
+
+          .application-status {
+            text-align: right;
+            flex-shrink: 0;
+
+            .status-badge {
+              display: inline-block;
+              padding: 0.5rem 1rem;
+              border-radius: 20px;
+              font-size: 0.875rem;
+              font-weight: 500;
+              margin-bottom: 0.5rem;
+
+              &.status-applied {
+                background: #FEF3C7;
+                color: #D97706;
+              }
+
+              &.status-shortlisted {
+                background: #DCFCE7;
+                color: #059669;
+              }
+
+              &.status-rejected {
+                background: #FEE2E2;
+                color: #DC2626;
+              }
+            }
+
+            .application-date {
+              display: block;
+              color: #6B7280;
+              font-size: 0.875rem;
+            }
+          }
+        }
+
+        .application-body {
+          padding: 0 2rem 1.5rem;
+
+          .job-description {
+            color: #6B7280;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+          }
+
+          .job-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+
+            .skill-tag {
+              background: #EBF5FF;
+              color: #1E40AF;
+              padding: 0.25rem 0.75rem;
+              border-radius: 16px;
+              font-size: 0.75rem;
+              font-weight: 500;
+              border: 1px solid #DBEAFE;
+            }
+
+            .skill-more {
+              color: #6B7280;
+              font-size: 0.75rem;
+              align-self: center;
+            }
+          }
+        }
+
+        .application-actions {
+          padding: 1.5rem 2rem;
+          background: #F9FAFB;
+          display: flex;
+          gap: 1rem;
+          justify-content: flex-end;
+
+          .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.875rem;
+
+            &.btn-outline {
+              background: white;
+              color: #2563EB;
+              border: 1px solid #2563EB;
+
+              &:hover {
+                background: #2563EB;
+                color: white;
+                transform: translateY(-1px);
+              }
+            }
+
+            &.btn-danger {
+              background: #DC2626;
+              color: white;
+
+              &:hover {
+                background: #B91C1C;
+                transform: translateY(-1px);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .no-applications,
+  .empty-state {
+    background: white;
+    padding: 4rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    .no-results-icon,
+    .empty-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.6;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #6B7280;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+      &.btn-primary {
+        background: #2563EB;
+        color: white;
+
+        &:hover {
+          background: #1D4ED8;
+          transform: translateY(-1px);
+        }
+      }
+
+      &.btn-outline {
+        background: transparent;
+        color: #6B7280;
+        border: 1px solid #D1D5DB;
+
+        &:hover {
+          background: #F9FAFB;
+          border-color: #9CA3AF;
+        }
+      }
+
+      .btn-icon {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-container {
+      padding: 1rem 0.5rem;
+    }
+
+    .page-header {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    .applications-stats {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+
+      .stat-card {
+        padding: 1.5rem;
+      }
+    }
+
+    .applications-filters {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1rem;
+
+      .filter-group {
+        .filter-select {
+          min-width: unset;
+          width: 100%;
+        }
+      }
+    }
+
+    .applications-list {
+      .application-card {
+        .application-header {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 1rem;
+
+          .application-status {
+            text-align: left;
+          }
+        }
+
+        .application-body {
+          padding: 0 1.5rem 1rem;
+        }
+
+        .application-actions {
+          padding: 1rem 1.5rem;
+          flex-direction: column;
+
+          .btn {
+            width: 100%;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

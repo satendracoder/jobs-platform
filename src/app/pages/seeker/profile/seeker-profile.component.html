@@ -1,0 +1,218 @@
+<div class="profile-page">
+  <div class="page-container">
+    <div class="page-header">
+      <h1>My Profile</h1>
+      <p class="page-subtitle">Manage your professional information and preferences</p>
+    </div>
+
+    <div class="profile-content">
+      <div class="profile-sidebar">
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <span class="avatar-text">{{ currentUser?.fullName?.charAt(0) || 'U' }}</span>
+          </div>
+          <h3>{{ currentUser?.fullName }}</h3>
+          <p class="profile-email">{{ currentUser?.email }}</p>
+          <div class="profile-stats">
+            <div class="stat-item">
+              <span class="stat-number">{{ applications.length }}</span>
+              <span class="stat-label">Applications</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{{ profileCompleteness }}%</span>
+              <span class="stat-label">Profile Complete</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="quick-actions">
+          <h4>Quick Actions</h4>
+          <div class="action-buttons">
+            <a routerLink="/jobs" class="action-btn">
+              <span class="btn-icon">🔍</span>
+              Browse Jobs
+            </a>
+            <a routerLink="/seeker/applications" class="action-btn">
+              <span class="btn-icon">📋</span>
+              My Applications
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-main">
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+          <!-- Personal Information -->
+          <div class="form-section">
+            <div class="section-header">
+              <h3>Personal Information</h3>
+              <p>Update your basic information</p>
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  formControlName="fullName"
+                  class="form-control"
+                  placeholder="Enter your full name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  formControlName="email"
+                  class="form-control"
+                  placeholder="Enter your email"
+                  readonly
+                />
+              </div>
+              <div class="form-group">
+                <label for="location">Location</label>
+                <input
+                  type="text"
+                  id="location"
+                  formControlName="location"
+                  class="form-control"
+                  placeholder="City, State/Country"
+                />
+              </div>
+              <div class="form-group">
+                <label for="experienceYears">Years of Experience</label>
+                <select id="experienceYears" formControlName="experienceYears" class="form-control">
+                  <option value="">Select experience</option>
+                  <option value="0">Fresh Graduate</option>
+                  <option value="1">1 Year</option>
+                  <option value="2">2 Years</option>
+                  <option value="3">3 Years</option>
+                  <option value="4">4 Years</option>
+                  <option value="5">5+ Years</option>
+                  <option value="10">10+ Years</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Skills -->
+          <div class="form-section">
+            <div class="section-header">
+              <h3>Skills & Expertise</h3>
+              <p>Add your technical and professional skills</p>
+            </div>
+            <div class="skills-section">
+              <div class="form-group">
+                <label for="skillInput">Add Skills</label>
+                <div class="skill-input-container">
+                  <input
+                    type="text"
+                    id="skillInput"
+                    [(ngModel)]="newSkill"
+                    [ngModelOptions]="{standalone: true}"
+                    class="form-control"
+                    placeholder="Type a skill and press Enter"
+                    (keyup.enter)="addSkill()"
+                  />
+                  <button type="button" class="add-skill-btn" (click)="addSkill()">Add</button>
+                </div>
+              </div>
+              <div class="skills-list" *ngIf="skills.length > 0">
+                <div class="skill-tag" *ngFor="let skill of skills; let i = index">
+                  <span>{{ skill }}</span>
+                  <button type="button" class="remove-skill" (click)="removeSkill(i)">×</button>
+                </div>
+              </div>
+              <div class="skills-suggestions">
+                <p>Popular skills:</p>
+                <div class="suggestion-tags">
+                  <button
+                    type="button"
+                    class="suggestion-tag"
+                    *ngFor="let suggestion of skillSuggestions"
+                    (click)="addSuggestedSkill(suggestion)"
+                  >
+                    {{ suggestion }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Resume Upload -->
+          <div class="form-section">
+            <div class="section-header">
+              <h3>Resume</h3>
+              <p>Upload your latest resume (PDF format recommended)</p>
+            </div>
+            <div class="resume-upload">
+              <div class="upload-area" [class.has-file]="resumeFile">
+                <input
+                  type="file"
+                  id="resume"
+                  accept=".pdf,.doc,.docx"
+                  (change)="onResumeSelect($event)"
+                  class="file-input"
+                />
+                <label for="resume" class="upload-label">
+                  <div class="upload-icon">📄</div>
+                  <div class="upload-text">
+                    <span class="upload-title" *ngIf="!resumeFile">Click to upload resume</span>
+                    <span class="upload-title" *ngIf="resumeFile">{{ resumeFile.name }}</span>
+                    <span class="upload-subtitle">PDF, DOC, DOCX up to 10MB</span>
+                  </div>
+                </label>
+              </div>
+              <div class="resume-actions" *ngIf="resumeFile">
+                <button type="button" class="btn btn-outline btn-sm" (click)="removeResume()">
+                  Remove File
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Job Preferences -->
+          <div class="form-section">
+            <div class="section-header">
+              <h3>Job Preferences</h3>
+              <p>Set your job search preferences</p>
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="preferredJobType">Preferred Job Type</label>
+                <select id="preferredJobType" formControlName="preferredJobType" class="form-control">
+                  <option value="">Any</option>
+                  <option value="Full-Time">Full-Time</option>
+                  <option value="Part-Time">Part-Time</option>
+                  <option value="Internship">Internship</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="expectedSalary">Expected Salary Range</label>
+                <select id="expectedSalary" formControlName="expectedSalary" class="form-control">
+                  <option value="">Not specified</option>
+                  <option value="$30,000 - $50,000">$30,000 - $50,000</option>
+                  <option value="$50,000 - $70,000">$50,000 - $70,000</option>
+                  <option value="$70,000 - $100,000">$70,000 - $100,000</option>
+                  <option value="$100,000 - $150,000">$100,000 - $150,000</option>
+                  <option value="$150,000+">$150,000+</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid || isLoading">
+              <span *ngIf="!isLoading">Save Changes</span>
+              <span *ngIf="isLoading">Saving...</span>
+            </button>
+            <button type="button" class="btn btn-outline" (click)="resetForm()">
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

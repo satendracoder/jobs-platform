@@ -1,0 +1,125 @@
+<div class="applications-page">
+  <div class="page-container">
+    <div class="page-header">
+      <h1>My Applications</h1>
+      <p class="page-subtitle">Track and manage your job applications</p>
+    </div>
+
+    <div class="applications-stats">
+      <div class="stat-card">
+        <div class="stat-icon">📝</div>
+        <div class="stat-content">
+          <h3>{{ applications.length }}</h3>
+          <p>Total Applications</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⏳</div>
+        <div class="stat-content">
+          <h3>{{ pendingApplications }}</h3>
+          <p>Pending Review</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">✅</div>
+        <div class="stat-content">
+          <h3>{{ shortlistedApplications }}</h3>
+          <p>Shortlisted</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">❌</div>
+        <div class="stat-content">
+          <h3>{{ rejectedApplications }}</h3>
+          <p>Rejected</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="applications-filters">
+      <div class="filter-group">
+        <label>Filter by Status:</label>
+        <select [(ngModel)]="selectedStatus" (change)="filterApplications()" class="filter-select">
+          <option value="">All Applications</option>
+          <option value="Applied">Applied</option>
+          <option value="Shortlisted">Shortlisted</option>
+          <option value="Rejected">Rejected</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Sort by:</label>
+        <select [(ngModel)]="sortBy" (change)="sortApplications()" class="filter-select">
+          <option value="date-desc">Newest First</option>
+          <option value="date-asc">Oldest First</option>
+          <option value="status">Status</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="applications-content" *ngIf="filteredApplications.length > 0">
+      <div class="applications-list">
+        <div class="application-card" *ngFor="let application of filteredApplications">
+          <div class="application-header">
+            <div class="job-info">
+              <h3 class="job-title">{{ getJobTitle(application.jobID) }}</h3>
+              <p class="company-name">{{ getCompanyName(application.jobID) }}</p>
+              <div class="job-details">
+                <span class="job-location">{{ getJobLocation(application.jobID) }}</span>
+                <span class="separator">•</span>
+                <span class="job-type">{{ getJobType(application.jobID) }}</span>
+                <span class="separator">•</span>
+                <span class="salary-range">{{ getJobSalary(application.jobID) }}</span>
+              </div>
+            </div>
+            <div class="application-status">
+              <span class="status-badge" [class]="'status-' + application.status.toLowerCase()">
+                {{ application.status }}
+              </span>
+              <span class="application-date">
+                Applied {{ application.appliedDate | date:'MMM dd, yyyy' }}
+              </span>
+            </div>
+          </div>
+
+          <div class="application-body">
+            <p class="job-description">{{ getJobDescription(application.jobID) }}</p>
+            <div class="job-skills" *ngIf="getJobSkills(application.jobID).length > 0">
+              <span class="skill-tag" *ngFor="let skill of getJobSkills(application.jobID) | slice:0:4">
+                {{ skill }}
+              </span>
+              <span class="skill-more" *ngIf="getJobSkills(application.jobID).length > 4">
+                +{{ getJobSkills(application.jobID).length - 4 }} more
+              </span>
+            </div>
+          </div>
+
+          <div class="application-actions">
+            <button class="btn btn-outline" [routerLink]="['/jobs', application.jobID]">
+              View Job
+            </button>
+            <button class="btn btn-danger" (click)="withdrawApplication(application.applicationID!)">
+              Withdraw
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-applications" *ngIf="filteredApplications.length === 0 && applications.length > 0">
+      <div class="no-results-icon">🔍</div>
+      <h3>No applications found</h3>
+      <p>Try adjusting your filters to see more results.</p>
+      <button class="btn btn-outline" (click)="clearFilters()">Clear Filters</button>
+    </div>
+
+    <div class="empty-state" *ngIf="applications.length === 0">
+      <div class="empty-icon">📋</div>
+      <h3>No Applications Yet</h3>
+      <p>You haven't applied to any jobs yet. Start exploring opportunities and apply to jobs that match your skills.</p>
+      <a routerLink="/jobs" class="btn btn-primary">
+        <span class="btn-icon">🔍</span>
+        Browse Jobs
+      </a>
+    </div>
+  </div>
+</div>

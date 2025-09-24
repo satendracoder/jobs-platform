@@ -1,0 +1,314 @@
+.dashboard {
+  padding-top: 70px;
+  min-height: 100vh;
+  background: #F8FAFC;
+
+  .dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .dashboard-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: #6B7280;
+      font-size: 1.1rem;
+    }
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+
+    .stat-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .stat-icon {
+        font-size: 2.5rem;
+        background: #F3F4F6;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .stat-content {
+        h3 {
+          font-size: 2rem;
+          font-weight: 700;
+          color: #2563EB;
+          margin: 0 0 0.25rem 0;
+        }
+
+        p {
+          color: #6B7280;
+          margin: 0;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .quick-actions {
+    margin-bottom: 3rem;
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 1rem;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+
+      .action-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+
+        .btn-icon {
+          font-size: 1.2rem;
+        }
+
+        &.primary {
+          background: #2563EB;
+          color: white;
+
+          &:hover {
+            background: #1D4ED8;
+            transform: translateY(-1px);
+          }
+        }
+
+        &.secondary {
+          background: white;
+          color: #374151;
+          border: 1px solid #D1D5DB;
+
+          &:hover {
+            background: #F9FAFB;
+            border-color: #2563EB;
+            transform: translateY(-1px);
+          }
+        }
+      }
+    }
+  }
+
+  .recent-jobs-section {
+    margin-bottom: 3rem;
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1F2937;
+        margin: 0;
+      }
+
+      .view-all {
+        color: #2563EB;
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .no-jobs {
+      background: white;
+      padding: 3rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+      p {
+        color: #6B7280;
+        font-size: 1.1rem;
+        margin: 0;
+      }
+    }
+  }
+
+  .recent-applications-section {
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 1.5rem;
+    }
+
+    .applications-table {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+      .table-header {
+        background: #F8FAFC;
+        display: grid;
+        grid-template-columns: 2fr 1.5fr 1fr 1fr;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+        font-weight: 600;
+        color: #374151;
+        border-bottom: 1px solid #E5E7EB;
+      }
+
+      .table-row {
+        display: grid;
+        grid-template-columns: 2fr 1.5fr 1fr 1fr;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #F3F4F6;
+        align-items: center;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .job-title {
+          font-weight: 500;
+          color: #1F2937;
+        }
+
+        .company {
+          color: #6B7280;
+        }
+
+        .date {
+          color: #6B7280;
+          font-size: 0.875rem;
+        }
+
+        .status {
+          padding: 0.25rem 0.75rem;
+          border-radius: 12px;
+          font-size: 0.75rem;
+          font-weight: 500;
+          text-align: center;
+          width: fit-content;
+
+          &.status-applied {
+            background: #FEF3C7;
+            color: #D97706;
+          }
+
+          &.status-shortlisted {
+            background: #DCFCE7;
+            color: #059669;
+          }
+
+          &.status-rejected {
+            background: #FEE2E2;
+            color: #DC2626;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .dashboard-container {
+      padding: 1rem 0.5rem;
+    }
+
+    .dashboard-header {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+
+      .stat-card {
+        padding: 1.5rem;
+      }
+    }
+
+    .action-buttons {
+      flex-direction: column;
+
+      .action-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    .jobs-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    .applications-table {
+      .table-header,
+      .table-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 1rem;
+      }
+
+      .table-header {
+        display: none;
+      }
+
+      .table-row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .status {
+          align-self: flex-end;
+        }
+      }
+    }
+  }
+}
