@@ -1,5 +1,5 @@
 .footer {
-  background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
   color: white;
   margin-top: auto;
 
@@ -16,7 +16,8 @@
     padding: 3rem 0 2rem;
 
     .footer-section {
-      h3, h4 {
+      h3,
+      h4 {
         margin-bottom: 1rem;
         font-weight: 600;
         color: white;
@@ -28,7 +29,7 @@
 
       h4 {
         font-size: 1.1rem;
-        color: #E5E7EB;
+        color: #e5e7eb;
       }
     }
 
@@ -54,7 +55,7 @@
       }
 
       .footer-description {
-        color: #D1D5DB;
+        color: #d1d5db;
         line-height: 1.6;
         margin-bottom: 1.5rem;
         font-size: 0.95rem;
@@ -77,6 +78,11 @@
           transition: all 0.3s ease;
           border: 1px solid rgba(255, 255, 255, 0.1);
 
+          img {
+            width: 30px;
+            height: 30px;
+          }
+
           &:hover {
             background: rgba(37, 99, 235, 0.8);
             transform: translateY(-2px);
@@ -95,14 +101,14 @@
         margin-bottom: 0.75rem;
 
         a {
-          color: #D1D5DB;
+          color: #d1d5db;
           text-decoration: none;
           font-size: 0.9rem;
           transition: all 0.3s ease;
           display: inline-block;
 
           &:hover {
-            color: #60A5FA;
+            color: #60a5fa;
             transform: translateX(4px);
           }
         }
@@ -110,7 +116,7 @@
     }
 
     .newsletter-text {
-      color: #D1D5DB;
+      color: #d1d5db;
       font-size: 0.9rem;
       line-height: 1.5;
       margin-bottom: 1rem;
@@ -131,19 +137,19 @@
         font-size: 0.9rem;
 
         &::placeholder {
-          color: #9CA3AF;
+          color: #9ca3af;
         }
 
         &:focus {
           outline: none;
-          border-color: #60A5FA;
+          border-color: #60a5fa;
           box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
         }
       }
 
       .newsletter-btn {
         padding: 0.75rem 1rem;
-        background: linear-gradient(135deg, #2563EB, #1D4ED8);
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
         color: white;
         border: none;
         border-radius: 6px;
@@ -154,7 +160,7 @@
         white-space: nowrap;
 
         &:hover {
-          background: linear-gradient(135deg, #1D4ED8, #1E40AF);
+          background: linear-gradient(135deg, #1d4ed8, #1e40af);
           transform: translateY(-1px);
           box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
@@ -167,7 +173,7 @@
         align-items: center;
         gap: 0.5rem;
         margin-bottom: 0.75rem;
-        color: #D1D5DB;
+        color: #d1d5db;
         font-size: 0.9rem;
 
         .contact-icon {
@@ -189,7 +195,7 @@
 
       p {
         margin: 0;
-        color: #9CA3AF;
+        color: #9ca3af;
         font-size: 0.9rem;
       }
 
@@ -198,13 +204,13 @@
         gap: 1.5rem;
 
         a {
-          color: #9CA3AF;
+          color: #9ca3af;
           text-decoration: none;
           font-size: 0.9rem;
           transition: color 0.3s ease;
 
           &:hover {
-            color: #60A5FA;
+            color: #60a5fa;
           }
         }
       }
