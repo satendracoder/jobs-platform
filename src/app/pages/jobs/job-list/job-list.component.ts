@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
-import { JobService } from '../../../services/job.service';
-import { AuthService } from '../../../services/auth.service';
-import { Job, User } from '../../../models/user.model';
-import { JobCardComponent } from '../../../components/job-card/job-card.component';
+import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ReactiveFormsModule, FormBuilder, FormGroup } from "@angular/forms";
+import { JobService } from "../../../services/job.service";
+import { AuthService } from "../../../services/auth.service";
+import { Job, User } from "../../../models/user.model";
+import { JobCardComponent } from "../../../components/job-card/job-card.component";
 
 @Component({
-  selector: 'app-job-list',
+  selector: "app-job-list",
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, JobCardComponent],
   template: `
@@ -34,7 +34,11 @@ import { JobCardComponent } from '../../../components/job-card/job-card.componen
                   class="search-input"
                 />
               </div>
-              <button type="button" class="btn btn-primary" (click)="searchJobs()">
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="searchJobs()"
+              >
                 Search Jobs
               </button>
             </div>
@@ -44,7 +48,11 @@ import { JobCardComponent } from '../../../components/job-card/job-card.componen
           <div class="filters">
             <div class="filter-group">
               <label>Job Type:</label>
-              <select formControlName="jobType" class="filter-select" (change)="searchJobs()">
+              <select
+                formControlName="jobType"
+                class="filter-select"
+                (change)="searchJobs()"
+              >
                 <option value="">All Types</option>
                 <option value="Full-Time">Full-Time</option>
                 <option value="Part-Time">Part-Time</option>
@@ -61,7 +69,11 @@ import { JobCardComponent } from '../../../components/job-card/job-card.componen
                 (input)="searchJobs()"
               />
             </div>
-            <button type="button" class="btn btn-outline" (click)="clearFilters()">
+            <button
+              type="button"
+              class="btn btn-outline"
+              (click)="clearFilters()"
+            >
               Clear Filters
             </button>
           </div>
@@ -85,13 +97,16 @@ import { JobCardComponent } from '../../../components/job-card/job-card.componen
 
           <div class="no-results" *ngIf="jobs.length === 0">
             <h3>No jobs found</h3>
-            <p>Try adjusting your search criteria or check back later for new opportunities.</p>
+            <p>
+              Try adjusting your search criteria or check back later for new
+              opportunities.
+            </p>
           </div>
         </div>
       </div>
     </div>
   `,
-  styleUrls: ['./job-list.component.scss']
+  styleUrls: ["./job-list.component.scss"],
 })
 export class JobListComponent implements OnInit {
   jobs: Job[] = [];
@@ -105,10 +120,10 @@ export class JobListComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.searchForm = this.fb.group({
-      searchTerm: [''],
-      location: [''],
-      jobType: [''],
-      skills: ['']
+      searchTerm: [""],
+      location: [""],
+      jobType: [""],
+      skills: [""],
     });
 
     this.currentUser = this.authService.getCurrentUser();
@@ -125,18 +140,24 @@ export class JobListComponent implements OnInit {
       searchTerm: formValue.searchTerm,
       location: formValue.location,
       jobType: formValue.jobType,
-      skills: formValue.skills ? formValue.skills.split(',').map((s: string) => s.trim()) : []
+      skills: formValue.skills
+        ? formValue.skills.split(",").map((s: string) => s.trim())
+        : [],
     };
 
     // Remove empty filters
-    Object.keys(filters).forEach(key => {
+    Object.keys(filters).forEach((key) => {
       const filterKey = key as keyof typeof filters;
-      if (!filters[filterKey] || (Array.isArray(filters[filterKey]) && (filters[filterKey] as any[]).length === 0)) {
+      if (
+        !filters[filterKey] ||
+        (Array.isArray(filters[filterKey]) &&
+          (filters[filterKey] as any[]).length === 0)
+      ) {
         delete filters[filterKey];
       }
     });
 
-    this.jobService.getJobs(filters).subscribe(jobs => {
+    this.jobService.getJobs(filters).subscribe((jobs) => {
       this.jobs = jobs;
     });
   }
@@ -147,14 +168,16 @@ export class JobListComponent implements OnInit {
   }
 
   applyToJob(jobId: string): void {
-    if (!this.currentUser || this.currentUser.userType !== 'JobSeeker') {
+    if (!this.currentUser || this.currentUser.userType !== "JobSeeker") {
       return;
     }
 
-    this.jobService.applyForJob(jobId, this.currentUser.userID!).subscribe(() => {
-      this.appliedJobs.add(jobId);
-      alert('Application submitted successfully!');
-    });
+    this.jobService
+      .applyForJob(jobId, this.currentUser.userID!)
+      .subscribe(() => {
+        this.appliedJobs.add(jobId);
+        alert("Application submitted successfully!");
+      });
   }
 
   hasAppliedToJob(jobId: string): boolean {
@@ -162,10 +185,12 @@ export class JobListComponent implements OnInit {
   }
 
   private loadUserApplications(): void {
-    if (this.currentUser?.userType === 'JobSeeker') {
-      this.jobService.getApplicationsBySeeker(this.currentUser.userID!).subscribe(applications => {
-        applications.forEach(app => this.appliedJobs.add(app.jobID));
-      });
+    if (this.currentUser?.userType === "JobSeeker") {
+      this.jobService
+        .getApplicationsBySeeker(this.currentUser.userID!)
+        .subscribe((applications) => {
+          applications.forEach((app) => this.appliedJobs.add(app.jobID));
+        });
     }
   }
 }

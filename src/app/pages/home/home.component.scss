@@ -1,6 +1,6 @@
 .home {
   .hero {
-    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%);
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%);
     color: white;
     padding: 4rem 0 8rem;
     margin-top: 80px;
@@ -8,7 +8,7 @@
     overflow: hidden;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -91,11 +91,11 @@
 
           &.btn-primary {
             background: white;
-            color: #2563EB;
+            color: #2563eb;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 
             &:hover {
-              background: #F8FAFC;
+              background: #f8fafc;
               transform: translateY(-2px);
               box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
             }
@@ -167,7 +167,7 @@
             font-size: 1.5rem;
             width: 40px;
             height: 40px;
-            background: #F3F4F6;
+            background: #f3f4f6;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -180,12 +180,12 @@
 
             .card-title {
               font-weight: 600;
-              color: #1F2937;
+              color: #1f2937;
               font-size: 0.9rem;
             }
 
             .card-subtitle {
-              color: #6B7280;
+              color: #6b7280;
               font-size: 0.8rem;
             }
           }
@@ -208,7 +208,7 @@
 
   .features {
     padding: 8rem 0;
-    background: #F8FAFC;
+    background: #f8fafc;
 
     .features-container {
       max-width: 1200px;
@@ -221,7 +221,7 @@
 
         .section-badge {
           display: inline-block;
-          background: linear-gradient(135deg, #2563EB, #1D4ED8);
+          background: linear-gradient(135deg, #2563eb, #1d4ed8);
           color: white;
           padding: 0.5rem 1rem;
           border-radius: 20px;
@@ -233,14 +233,14 @@
         .section-title {
           font-size: 3rem;
           font-weight: 700;
-          color: #1F2937;
+          color: #1f2937;
           margin-bottom: 1rem;
           line-height: 1.2;
         }
 
         .section-subtitle {
           font-size: 1.1rem;
-          color: #6B7280;
+          color: #6b7280;
           max-width: 600px;
           margin: 0 auto;
           line-height: 1.6;
@@ -257,19 +257,19 @@
           padding: 2.5rem;
           border-radius: 20px;
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-          border: 1px solid #E5E7EB;
+          border: 1px solid #e5e7eb;
           transition: all 0.3s ease;
           position: relative;
           overflow: hidden;
 
           &::before {
-            content: '';
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(135deg, #2563EB, #1D4ED8);
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
             transform: scaleX(0);
             transition: transform 0.3s ease;
           }
@@ -297,26 +297,26 @@
           h3 {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #1F2937;
+            color: #1f2937;
             margin-bottom: 1rem;
           }
 
           p {
-            color: #6B7280;
+            color: #6b7280;
             line-height: 1.7;
             margin-bottom: 1.5rem;
           }
 
           .feature-link {
             a {
-              color: #2563EB;
+              color: #2563eb;
               text-decoration: none;
               font-weight: 500;
               font-size: 0.9rem;
               transition: color 0.3s ease;
 
               &:hover {
-                color: #1D4ED8;
+                color: #1d4ed8;
               }
             }
           }
@@ -352,13 +352,13 @@
         .section-title {
           font-size: 3rem;
           font-weight: 700;
-          color: #1F2937;
+          color: #1f2937;
           margin-bottom: 1rem;
         }
 
         .section-subtitle {
           font-size: 1.1rem;
-          color: #6B7280;
+          color: #6b7280;
           max-width: 500px;
           margin: 0 auto;
         }
@@ -381,7 +381,7 @@
             transform: translateX(-50%);
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, #2563EB, #1D4ED8);
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
             color: white;
             border-radius: 50%;
             display: flex;
@@ -401,12 +401,12 @@
           h3 {
             font-size: 1.25rem;
             font-weight: 600;
-            color: #1F2937;
+            color: #1f2937;
             margin-bottom: 1rem;
           }
 
           p {
-            color: #6B7280;
+            color: #6b7280;
             line-height: 1.6;
           }
         }
@@ -416,13 +416,13 @@
 
   .cta {
     padding: 8rem 0;
-    background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
     color: white;
     position: relative;
     overflow: hidden;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -449,6 +449,7 @@
         font-weight: 700;
         margin-bottom: 1.5rem;
         line-height: 1.2;
+        color: #fff;
       }
 
       p {
@@ -477,11 +478,11 @@
           }
 
           &.btn-primary {
-            background: linear-gradient(135deg, #2563EB, #1D4ED8);
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
             color: white;
 
             &:hover {
-              background: linear-gradient(135deg, #1D4ED8, #1E40AF);
+              background: linear-gradient(135deg, #1d4ed8, #1e40af);
               transform: translateY(-2px);
               box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
             }
@@ -513,7 +514,8 @@
   }
 
   @keyframes float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0px);
     }
     50% {

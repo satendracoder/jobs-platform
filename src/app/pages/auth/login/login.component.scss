@@ -9,6 +9,7 @@
   .auth-container {
     width: 100%;
     max-width: 400px;
+    margin-top: 80px;
 
     .auth-card {
       background: white;
@@ -23,12 +24,12 @@
         h2 {
           font-size: 2rem;
           font-weight: 700;
-          color: #1F2937;
+          color: #1f2937;
           margin-bottom: 0.5rem;
         }
 
         p {
-          color: #6B7280;
+          color: #6b7280;
           margin: 0;
         }
       }
@@ -47,7 +48,7 @@
           .form-control {
             width: 100%;
             padding: 0.75rem 1rem;
-            border: 1px solid #D1D5DB;
+            border: 1px solid #d1d5db;
             border-radius: 8px;
             font-size: 1rem;
             transition: all 0.3s ease;
@@ -55,22 +56,22 @@
 
             &:focus {
               outline: none;
-              border-color: #2563EB;
+              border-color: #2563eb;
               box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
             }
 
             &.error {
-              border-color: #EF4444;
+              border-color: #ef4444;
               box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
             }
 
             &::placeholder {
-              color: #9CA3AF;
+              color: #9ca3af;
             }
           }
 
           .error-message {
-            color: #EF4444;
+            color: #ef4444;
             font-size: 0.875rem;
             margin-top: 0.5rem;
           }
@@ -79,7 +80,7 @@
         .btn {
           width: 100%;
           padding: 0.75rem 1rem;
-          background: #2563EB;
+          background: #2563eb;
           color: white;
           border: none;
           border-radius: 8px;
@@ -89,7 +90,7 @@
           transition: all 0.3s ease;
 
           &:hover:not(:disabled) {
-            background: #1D4ED8;
+            background: #1d4ed8;
             transform: translateY(-1px);
           }
 
@@ -105,11 +106,11 @@
         text-align: center;
 
         p {
-          color: #6B7280;
+          color: #6b7280;
           margin-bottom: 1rem;
 
           a {
-            color: #2563EB;
+            color: #2563eb;
             text-decoration: none;
             font-weight: 500;
 
@@ -120,11 +121,11 @@
         }
 
         .demo-accounts {
-          border-top: 1px solid #E5E7EB;
+          border-top: 1px solid #e5e7eb;
           padding-top: 1rem;
 
           small {
-            color: #6B7280;
+            color: #6b7280;
             display: block;
             margin-bottom: 0.5rem;
           }
@@ -136,7 +137,7 @@
 
             .demo-btn {
               padding: 0.5rem 1rem;
-              background: #F3F4F6;
+              background: #f3f4f6;
               color: #374151;
               border: none;
               border-radius: 6px;
@@ -145,7 +146,7 @@
               transition: all 0.3s ease;
 
               &:hover {
-                background: #E5E7EB;
+                background: #e5e7eb;
               }
             }
           }

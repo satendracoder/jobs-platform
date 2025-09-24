@@ -1,9 +1,14 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { User, LoginRequest, RegisterRequest, AuthResponse } from '../models/user.model';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, Observable, of } from "rxjs";
+import {
+  User,
+  LoginRequest,
+  RegisterRequest,
+  AuthResponse,
+} from "../models/user.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AuthService {
   private currentUserSubject = new BehaviorSubject<User | null>(null);
@@ -14,9 +19,9 @@ export class AuthService {
   }
 
   private loadUserFromStorage(): void {
-    const token = localStorage.getItem('token');
-    const userData = localStorage.getItem('user');
-    
+    const token = localStorage.getItem("token");
+    const userData = localStorage.getItem("user");
+
     if (token && userData) {
       try {
         const user = JSON.parse(userData);
@@ -30,20 +35,24 @@ export class AuthService {
   login(credentials: LoginRequest): Observable<AuthResponse> {
     // Simulate API call
     const mockUser: User = {
-      userID: '1',
-      fullName: credentials.email === 'employer@test.com' ? 'John Employer' : 'Jane Seeker',
+      userID: "1",
+      fullName:
+        credentials.email === "employer@test.com"
+          ? "Yash Employer"
+          : "Satendra Seeker",
       email: credentials.email,
-      userType: credentials.email === 'employer@test.com' ? 'Employer' : 'JobSeeker',
-      createdAt: new Date()
+      userType:
+        credentials.email === "employer@test.com" ? "Employer" : "JobSeeker",
+      createdAt: new Date(),
     };
 
     const response: AuthResponse = {
-      token: 'mock-jwt-token-' + Date.now(),
-      user: mockUser
+      token: "mock-jwt-token-" + Date.now(),
+      user: mockUser,
     };
 
-    localStorage.setItem('token', response.token);
-    localStorage.setItem('user', JSON.stringify(response.user));
+    localStorage.setItem("token", response.token);
+    localStorage.setItem("user", JSON.stringify(response.user));
     this.currentUserSubject.next(response.user);
 
     return of(response);
@@ -56,24 +65,24 @@ export class AuthService {
       fullName: userData.fullName,
       email: userData.email,
       userType: userData.userType,
-      createdAt: new Date()
+      createdAt: new Date(),
     };
 
     const response: AuthResponse = {
-      token: 'mock-jwt-token-' + Date.now(),
-      user: mockUser
+      token: "mock-jwt-token-" + Date.now(),
+      user: mockUser,
     };
 
-    localStorage.setItem('token', response.token);
-    localStorage.setItem('user', JSON.stringify(response.user));
+    localStorage.setItem("token", response.token);
+    localStorage.setItem("user", JSON.stringify(response.user));
     this.currentUserSubject.next(response.user);
 
     return of(response);
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     this.currentUserSubject.next(null);
   }
 
@@ -91,6 +100,6 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return localStorage.getItem("token");
   }
 }

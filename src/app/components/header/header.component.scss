@@ -1,5 +1,5 @@
 .header {
-  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
   box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
   position: fixed;
   top: 0;
@@ -22,17 +22,21 @@
     .logo-link {
       text-decoration: none;
       color: white;
-      
+
       .logo-content {
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        
+
         .logo-icon {
           font-size: 2rem;
           filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+          img {
+            height: 40px;
+            width: auto;
+          }
         }
-        
+
         h2 {
           margin: 0;
           font-size: 1.8rem;
@@ -195,7 +199,7 @@
       top: 70px;
       left: 0;
       width: 100%;
-      background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
       flex-direction: column;
       align-items: stretch;
       padding: 1.5rem;
@@ -219,7 +223,7 @@
 
         li {
           width: 100%;
-          
+
           a {
             display: block;
             width: 100%;

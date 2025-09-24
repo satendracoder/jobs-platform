@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>My app</title>
-    <meta charset="UTF-8" />
-    <base href="/">
-  </head>
-  <body>
-    <app-root>Loading...</app-root>
-  </body>
+
+<head>
+  <title>Quantified HR Job Portal</title>
+
+  <meta charset="UTF-8" />
+  <base href="/">
+</head>
+
+<style>
+  .loader {
+    width: 50px;
+    margin: 20% auto auto auto;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid lightblue;
+    border-right-color: #1E40AF;
+    animation: l2 1s infinite linear;
+  }
+
+  @keyframes l2 {
+    to {
+      transform: rotate(1turn)
+    }
+  }
+</style>
+
+<body>
+  <app-root>
+    <div class="loader"></div>
+  </app-root>
+</body>
+
+
+
 </html>
